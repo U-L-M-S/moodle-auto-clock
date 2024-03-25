@@ -63,3 +63,30 @@ On your Shortcuts go to **automation** and select the trigger. It can be the tim
 Then select the **action** *run ssh command*, input your informations (hostname, username, password) and in the area of **scripting** insert this command `docker run -e ACTION=starten moodle-auto-clock`.
 
 #### Android
+
+# Setting up MacroDroid for Android
+
+Unfortunately, there is no built-in feature for Android, so we need to use an app. If I am mistaken, please correct me ([Coffmann](https://github.com/Coffmann)).
+
+## Installation
+
+There are many apps available, but for these instructions, we will use the free app "MacroDroid". Follow these steps to download and install MacroDroid:
+
+- Download and install MacroDroid from an app store of your choice:
+  - [Google Play](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&gl=US)
+
+## Usage
+
+1. Launch MacroDroid and navigate through the introductory screens.
+2. On the Tile Screen or Main Menu, locate and tap the "Create Macro" tab.
+3. Name the macro as you prefer.
+4. Tap the small plus (+) icon in the upper right corner of the red tile labeled "Trigger".
+5. Configure the trigger parameters according to your preferences (e.g., Time, Geofence, Shaking).
+6. Once you've set the trigger, return to the Macro Creation Screen and tap the plus (+) symbol on the blue tile labeled "Actions".
+7. In the Actions menu, select "Applications", then choose "Shell Script" from the dropdown menu.
+8. Enable the "Helper App" feature and switch the access type to "No Root Access".
+9. Now, insert the command `docker run -e ACTION=starten moodle-auto-clock`, then press "OK".
+10. OPTIONAL: Customize constraints using the plus (+) symbol within the green tile labeled "Constraints".
+11. Press the "Back" arrow in the top-left corner, then click "Save" in the pop-up message. You're done!
+
+To view all your saved macros, navigate to the "Macros" tab at the bottom of the Main Menu.
