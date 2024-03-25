@@ -1,0 +1,8 @@
+version: "2.0"
+
+services:
+  moodle-auto-clock:
+    container_name: moodle-auto-clock_container
+    build: .  # Build the image from the current directory (./)
+    volumes:
+      - ./credentials.json:/app/credentials.json:ro  # Mount credentials with read-only access
