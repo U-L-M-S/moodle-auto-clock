@@ -64,18 +64,17 @@ Then select the **action** *run ssh command*, input your informations (hostname,
 
 #### Android
 
-# Setting up MacroDroid for Android
 
-Unfortunately, there is no built-in feature for Android, so we need to use an app. If I am mistaken, please correct me ([Coffmann](https://github.com/Coffmann)).
+*Unfortunately, there is no built-in feature for Android, so we need to use an app. If I am mistaken, please correct me ([Coffmann](https://github.com/Coffmann)).*
 
-## Installation
+##### Installation
 
 There are many apps available, but for these instructions, we will use the free app "MacroDroid". Follow these steps to download and install MacroDroid:
 
 - Download and install MacroDroid from an app store of your choice:
   - [Google Play](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&gl=US)
 
-## Usage
+#### Usage
 
 1. Launch MacroDroid and navigate through the introductory screens.
 2. On the Tile Screen or Main Menu, locate and tap the "Create Macro" tab.
