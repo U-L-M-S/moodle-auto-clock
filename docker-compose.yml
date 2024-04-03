@@ -1,8 +1,7 @@
 version: "2.0"
-
+name: moodle-auto-clock_container
 services:
   moodle-auto-clock_image:
-    container_name: moodle-auto-clock_container
     build: .  # Build the image from the current directory (./)
     image: moodle-auto-clock_image:latest
     volumes:
