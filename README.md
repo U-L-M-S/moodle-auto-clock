@@ -50,7 +50,7 @@ In this way a docker image will be created with the name *moodle-auto-clock-imag
 #### SSH
 you can simple run 
 ```sh
-ssh user@server "docker run -e ACTION=starten moodle-auto-clock"
+ssh user@server "docker run -e ACTION=starten moodle-auto-clock_image"
 ```
 you can use `starten` (it will clock you in) or `beenden` (it will clock you out) as variable valuer on `ACTION`. But our goal here is to make it happen automatically.
 
