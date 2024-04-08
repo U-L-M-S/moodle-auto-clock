@@ -15,6 +15,11 @@ You will learn how to setup the docker container and your mobile phone so it can
 ___
 
 ## Server
+
+### Windows: 
+[Docker install guide](https://docs.docker.com/desktop/install/windows-install/) 
+
+### Linux:
 First let's install Docker and configure it.
 ```sh
 sudo apt update && sudo apt install docker.io
@@ -69,7 +74,13 @@ Then select the **action** *run ssh command*, input your informations (hostname,
 
 ##### Installation
 
-There are many apps available, but for these instructions, we will use the free app "MacroDroid". Follow these steps to download and install MacroDroid:
+There are many apps available. 
+Example apps:
+- Tasker [Google Play](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm&hl=de&gl=US)
+- MacroDroid [Google Play](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&gl=US)
+- Termux [GitHub](https://github.com/termux/termux-app)
+
+But for these instructions, we will use the free app "MacroDroid"
 
 - Download and install MacroDroid from an app store of your choice:
   - [Google Play](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&gl=US)
