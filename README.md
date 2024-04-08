@@ -45,7 +45,7 @@ just go to the project folder `cd moodle-auto-clock` and run this command:
 ```sh
 docker compose build
 ```
-In this way a docker image will be created with the name *moodle-auto-clock-image*.
+In this way a docker image will be created with the name *moodle-auto-clock_image*.
 
 #### SSH
 you can simple run 
@@ -60,7 +60,7 @@ ___
 #### Iphone
 On your Shortcuts go to **automation** and select the trigger. It can be the time or place.
 
-Then select the **action** *run ssh command*, input your informations (hostname, username, password) and in the area of **scripting** insert this command `docker run -e ACTION=starten moodle-auto-clock`.
+Then select the **action** *run ssh command*, input your informations (hostname, username, password) and in the area of **scripting** insert this command `docker run -e ACTION=starten moodle-auto-clock_image`.
 
 #### Android
 
@@ -84,7 +84,7 @@ There are many apps available, but for these instructions, we will use the free 
 6. Once you've set the trigger, return to the Macro Creation Screen and tap the plus (+) symbol on the blue tile labeled "Actions".
 7. In the Actions menu, select "Applications", then choose "Shell Script" from the dropdown menu.
 8. Enable the "Helper App" feature and switch the access type to "No Root Access".
-9. Now, insert the command `docker run -e ACTION=starten moodle-auto-clock`, then press "OK".
+9. Now, insert the command `docker run -e ACTION=starten moodle-auto-clock_image`, then press "OK".
 10. OPTIONAL: Customize constraints using the plus (+) symbol within the green tile labeled "Constraints".
 11. Press the "Back" arrow in the top-left corner, then click "Save" in the pop-up message. You're done!
 
