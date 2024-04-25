@@ -95,7 +95,7 @@ But for these instructions, we will use the free app "MacroDroid"
 6. Once you've set the trigger, return to the Macro Creation Screen and tap the plus (+) symbol on the blue tile labeled "Actions".
 7. In the Actions menu, select "Applications", then choose "Shell Script" from the dropdown menu.
 8. Enable the "Helper App" feature and switch the access type to "No Root Access".
-9. Now, insert the command `docker run -e ACTION=starten moodle-auto-clock_image`, then press "OK".
+9. Now, insert the command `docker run --rm -e ACTION=starten moodle-auto-clock_image`, then press "OK".
 10. OPTIONAL: Customize constraints using the plus (+) symbol within the green tile labeled "Constraints".
 11. Press the "Back" arrow in the top-left corner, then click "Save" in the pop-up message. You're done!
 
