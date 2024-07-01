@@ -15,6 +15,11 @@ You will learn how to setup the docker container and your mobile phone so it can
 ___
 
 ## Server
+
+### Windows: 
+[Docker install guide](https://docs.docker.com/desktop/install/windows-install/) 
+
+### Linux:
 First let's install Docker and configure it.
 ```sh
 sudo apt update && sudo apt install docker.io
@@ -45,12 +50,12 @@ just go to the project folder `cd moodle-auto-clock` and run this command:
 ```sh
 docker compose build
 ```
-In this way a docker image will be created with the name *moodle-auto-clock-image*.
+In this way a docker image will be created with the name *moodle-auto-clock_image*.
 
 #### SSH
 you can simple run 
 ```sh
-ssh user@server "docker run -e ACTION=starten moodle-auto-clock"
+ssh user@server "docker run --rm -e ACTION=starten moodle-auto-clock_image"
 ```
 you can use `starten` (it will clock you in) or `beenden` (it will clock you out) as variable valuer on `ACTION`. But our goal here is to make it happen automatically.
 
@@ -60,7 +65,7 @@ ___
 #### Iphone
 On your Shortcuts go to **automation** and select the trigger. It can be the time or place.
 
-Then select the **action** *run ssh command*, input your informations (hostname, username, password) and in the area of **scripting** insert this command `docker run -e ACTION=starten moodle-auto-clock`.
+Then select the **action** *run ssh command*, input your informations (hostname, username, password) and in the area of **scripting** insert this command `docker run --rm -e ACTION=starten moodle-auto-clock_image`.
 
 #### Android
 
@@ -69,7 +74,13 @@ Then select the **action** *run ssh command*, input your informations (hostname,
 
 ##### Installation
 
-There are many apps available, but for these instructions, we will use the free app "MacroDroid". Follow these steps to download and install MacroDroid:
+There are many apps available. 
+Example apps:
+- Tasker [Google Play](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm&hl=de&gl=US)
+- MacroDroid [Google Play](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&gl=US)
+- Termux [GitHub](https://github.com/termux/termux-app)
+
+But for these instructions, we will use the free app "MacroDroid"
 
 - Download and install MacroDroid from an app store of your choice:
   - [Google Play](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&gl=US)
@@ -84,7 +95,7 @@ There are many apps available, but for these instructions, we will use the free 
 6. Once you've set the trigger, return to the Macro Creation Screen and tap the plus (+) symbol on the blue tile labeled "Actions".
 7. In the Actions menu, select "Applications", then choose "Shell Script" from the dropdown menu.
 8. Enable the "Helper App" feature and switch the access type to "No Root Access".
-9. Now, insert the command `docker run -e ACTION=starten moodle-auto-clock`, then press "OK".
+9. Now, insert the command `docker run --rm -e ACTION=starten moodle-auto-clock_image`, then press "OK".
 10. OPTIONAL: Customize constraints using the plus (+) symbol within the green tile labeled "Constraints".
 11. Press the "Back" arrow in the top-left corner, then click "Save" in the pop-up message. You're done!
 
