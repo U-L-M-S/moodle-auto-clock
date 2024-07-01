@@ -72,7 +72,6 @@ def starten()->None:
     try:    
         # **Separate finding and clicking actions**
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "flexRadioDefault2"))).click()
-    try:
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input.btn.btn-primary[type='submit'][value='Starten']"))).click()
     except Exception as e:
         print(e)
@@ -90,7 +89,7 @@ def beenden():
   except Exception as e:
     print(e)
     email_subject = "GFN-CLOCK-OUT ERROR beenden not found"
-    email_body = f"Error on main.py LINE:85. \n'Beenden' button not found.\nException: {e}"
+    email_body = f"Error on main.py LINE:84. \n'Beenden' button not found.\nException: {e}"
     mail(email_subject, email_body)
   finally:
     driver.quit()
