@@ -19,7 +19,6 @@ driver = webdriver.Chrome(options=chrome_options)
 login_url = 'https://lernplattform.gfn.de/login/index.php'
 driver.get(login_url)
 
-
 def mail(email_subject, email_body)->None:
     with open('credentials.json') as f:
         credentials = json.load(f)
@@ -77,23 +76,23 @@ def starten()->None:
     except Exception as e:
         print(e)
         email_subject = "GFN-CLOCK-OUT ERROR starten not found"
-        email_body = f"Error on main.py LINE:66 OR 67. \n 'flexRadioDefault2' radio OR 'Starten' button not found.\nException: {e}"
+        email_body = f"Error on main.py LINE:72. \n 'flexRadioDefault2' radio OR 'Starten' button not found.\nException: {e}"
         mail(email_subject, email_body)
     finally:
         driver.quit()
 
-def beenden()->None:
-    try:    
-        # **Separate finding and clicking actions**
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@href='?stoppen=1']//button"))).click()
-
-    except Exception as e:
-        print(e)
-        email_subject = "GFN-CLOCK-OUT ERROR beenden not found"
-        email_body = f"Error on main.py LINE:79. \n'Beenden' button not found.\nException: {e}"
-        mail(email_subject, email_body)
-    finally:
-        driver.quit()
+def beenden():
+  try:
+    # Separate finding and clicking actions
+    beenden_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@href='?stoppen=1']//button[.='Beenden']")))
+    beenden_button.click()
+  except Exception as e:
+    print(e)
+    email_subject = "GFN-CLOCK-OUT ERROR beenden not found"
+    email_body = f"Error on main.py LINE:85. \n'Beenden' button not found.\nException: {e}"
+    mail(email_subject, email_body)
+  finally:
+    driver.quit()
 
 def main(action:str)->None:
     login()
