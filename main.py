@@ -82,16 +82,8 @@ def starten()->None:
         driver.quit()
 
 def beenden():
-  try:
-    # Separate finding and clicking actions
-    beenden_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@href='?stoppen=1']//button[.='Beenden']")))
-    beenden_button.click()
-  except Exception as e:
-    print(e)
-    email_subject = "GFN-CLOCK-OUT ERROR beenden not found"
-    email_body = f"Error on main.py LINE:84. \n'Beenden' button not found.\nException: {e}"
-    mail(email_subject, email_body)
-  finally:
+    #logout via PHP
+    driver.get('https://lernplattform.gfn.de/?stoppen=1')
     driver.quit()
 
 def main(action:str)->None:
