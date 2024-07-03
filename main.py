@@ -78,7 +78,7 @@ def starten()->None:
     try:    
         # **Separate finding and clicking actions**
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "flexRadioDefault2"))).click()
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input.btn.btn-primary[type='submit'][value='Starten']"))).click()
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@class='btn btn-primary' and @type='submit' and @value='Starten']"))).click()
     except Exception as e:
         print(e)
         email_subject = "GFN-CLOCK-OUT ERROR starten not found"
