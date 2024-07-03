@@ -10,11 +10,11 @@ import os
 
 # Configure Chrome options for headless mode
 chrome_options = Options()
-chrome_options.add_argument("--headless")
+#chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
-#chrome_options.add_argument("--disable-gpu")
-#chrome_options.add_argument("--disable-software-rasterizer")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--disable-software-rasterizer")
 driver = webdriver.Chrome(options=chrome_options) 
 login_url = 'https://lernplattform.gfn.de/login/index.php'
 driver.get(login_url)
@@ -67,6 +67,12 @@ def login()->None:
         print("Alert accepted")
     except TimeoutException:
         print("No alert")
+    
+    # Wait for and click the button
+    button_selector = 'div.drawer-toggler.drawer-right-toggle button.btn.icon-no-margin'
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector))).click()
+
+
 
 def starten()->None:
     try:    
@@ -88,16 +94,19 @@ def beenden():
 
 def main(action:str)->None:
     login()
+    input("Insert a valuer to continue")
+
     if action == "starten":
         starten()
     if action == "beenden":
         beenden()
 
 if __name__ == "__main__":
-    action=os.environ.get('ACTION')
-    if action == None or action == "":
-        email_subject = "GFN-CLOCK-OUT ERROR ENTRY"
-        email_body = f"No action specified LINE:98. Please specify an action in the environment variables.\n ACTION is probably empty or not set."
-        mail(email_subject, email_body)
-    else:
-        main(action)
+    main("starten")
+    # action=os.environ.get('ACTION')
+    # if action == None or action == "":
+    #     email_subject = "GFN-CLOCK-OUT ERROR ENTRY"
+    #     email_body = f"No action specified LINE:98. Please specify an action in the environment variables.\n ACTION is probably empty or not set."
+    #     mail(email_subject, email_body)
+    # else:
+    #     main(action)
