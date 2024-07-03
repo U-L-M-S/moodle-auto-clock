@@ -68,7 +68,7 @@ def login()->None:
     except TimeoutException:
         print("No alert")
     
-    # Wait for and click the button
+    # wait and click navbar on the right side
     button_selector = 'div.drawer-toggler.drawer-right-toggle button.btn.icon-no-margin'
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector))).click()
 
