@@ -65,7 +65,7 @@ Then select the **action** *run ssh command*, input your informations (hostname,
 #### Android
 
 
-*Unfortunately, there is no built-in feature for Android, so we need to use an app. If I am mistaken, please correct me ([Coffmann](https://github.com/Coffmann)).*
+*Unfortunately, there is no built-in feature for Android, so we need to use an app. If I am mistaken, please correct me ([Felix](https://github.com/Felix-From)).*
 
 ##### Installation
 

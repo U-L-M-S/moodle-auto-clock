@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import smtplib
 import json
 import os
+import requests
 
 # Configure Chrome options for headless mode
 chrome_options = Options()
@@ -85,7 +86,16 @@ def starten()->None:
 def beenden()->None:
     try:    
         # **Separate finding and clicking actions**
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@href='?stoppen=1']//button"))).click()
+        #WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@href='?stoppen=1']//button"))).click()
+        cookie1 = driver.get_cookie("MoodleSession")["value"]
+        cookie2 = driver.get_cookie("MOODLEID1_")["value"]
+        headers = {
+        "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 OPR/109.0.0.0 (Edition std-1)",
+        'Cookie': f'MOODLEID1_={cookie2}; MoodleSession={cookie1}'
+        }
+        url = "https://lernplattform.gfn.de/?stoppen=1"
+        requests.request("GET", url, headers=headers, data={})
+        #print(url,"   ",headers) #debug print
 
     except Exception as e:
         print(e)
