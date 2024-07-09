@@ -148,11 +148,10 @@ def main(action:str)->None:
         beenden()
 
 if __name__ == "__main__":
-    main("beenden")
-    # action=os.environ.get('ACTION')
-    # if action == None or action == "":
-    #     email_subject = "GFN-CLOCK-OUT ERROR ENTRY"
-    #     email_body = f"No action specified LINE:98. Please specify an action in the environment variables.\n ACTION is probably empty or not set."
-    #     mail(email_subject, email_body)
-    # else:
-    #     main(action)
+    action=os.environ.get('ACTION')
+    if action == None or action == "":
+        email_subject = "GFN-CLOCK-OUT ERROR ENTRY"
+        email_body = f"No action specified LINE:98. Please specify an action in the environment variables.\n ACTION is probably empty or not set."
+        mail(email_subject, email_body)
+    else:
+        main(action)
