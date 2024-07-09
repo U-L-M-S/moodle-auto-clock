@@ -53,8 +53,8 @@ def mail(email_subject, email_body)->None:
 def login()->None:
     with open('credentials.json') as f:
         credentials = json.load(f)
-    moodle_login_mail=credentials['username']
-    moodle_login_pswd=credentials['password']
+    moodle_login_mail = credentials['username']
+    moodle_login_pswd = credentials['password']
 
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'username'))).send_keys(moodle_login_mail)
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'password'))).send_keys(moodle_login_pswd)
@@ -68,41 +68,87 @@ def login()->None:
     except TimeoutException:
         print("No alert")
     
-    # wait and click navbar on the right side
+    # Print the page source for debugging
+    #print(driver.page_source)
+
+    # Check if the button is present before waiting for it to be clickable
     button_selector = 'div.drawer-toggler.drawer-right-toggle button.btn.icon-no-margin'
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector))).click()
-
-
-
-def starten()->None:
-    try:    
-        # **Separate finding and clicking actions**
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "flexRadioDefault2"))).click()
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@class='btn btn-primary' and @type='submit' and @value='Starten']"))).click()
+    try:
+        button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, button_selector)))
+        print("Button found:", button)
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector))).click()
+    except TimeoutException:
+        print("TimeoutException: Button not found or not clickable.")
+        email_subject = "GFN-CLOCK-OUT ERROR Button not found"
+        email_body = "Error on main.py LINE:73. Button not found or not clickable."
+        mail(email_subject, email_body)
     except Exception as e:
-        print(e)
-        email_subject = "GFN-CLOCK-OUT ERROR starten not found"
-        email_body = f"Error on main.py LINE:72. \n 'flexRadioDefault2' radio OR 'Starten' button not found.\nException: {e}"
+        print(f"Exception: {e}")
+        email_subject = "GFN-CLOCK-OUT ERROR"
+        email_body = f"Error on main.py LINE:73. Exception: {e}"
         mail(email_subject, email_body)
     finally:
         driver.quit()
 
-def beenden():
-    #logout via PHP
-    driver.get('https://lernplattform.gfn.de/?stoppen=1')
+
+def starten():
+  try:
+    # Click the radio button with value "20"
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@type='radio' and @value='20']"))).click()
+
+    # Click the "Starten" button
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@class='btn btn-primary' and @type='submit' and @value='Starten']"))).click()
+  except Exception as e:
+    print(e)
+    email_subject = "GFN-CLOCK-OUT ERROR starten not found"
+    email_body = f"Error on main.py LINE: 94. \n 'Starten' radio button OR 'Starten' button not found.\nException: {e}"
+    mail(email_subject, email_body)
+  finally:
     driver.quit()
+
+def beenden():
+    try:
+        # Click the sidebar toggle button to ensure it's open
+        try:
+            sidebar_toggle_button = WebDriverWait(driver, 3).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".drawer-toggler > .btn")))
+            sidebar_toggle_button.click()
+            print("Sidebar toggle button clicked to open sidebar")
+        except TimeoutException:
+            # Handle if sidebar toggle button is not found (assuming it's already open)
+            print("Sidebar toggle button not found, assuming sidebar is already open")
+
+        # Wait for the "Beenden" button to be present and clickable
+        button_selector = ".btn-primary:nth-child(1)"  # Adjust this selector based on your actual HTML structure
+        button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector)))
+        print("Button found:", button)
+
+        # Click the "Beenden" button
+        button.click()
+        print("Button clicked")
+
+    except TimeoutException:
+        print("TimeoutException: Button not found or not clickable.")
+        email_subject = "GFN-CLOCK-OUT ERROR 'Beenden' button not found"
+        email_body = "Error on main.py LINE: 110. 'Beenden' button not found or not clickable."
+        mail(email_subject, email_body)
+    except Exception as e:
+        print(f"Exception: {e}")
+        email_subject = "GFN-CLOCK-OUT ERROR"
+        email_body = f"Error on main.py LINE: 110. Exception: {e}"
+        mail(email_subject, email_body)
+    finally:
+        # Quit the driver at the end of the function
+        driver.quit()
 
 def main(action:str)->None:
     login()
-    input("Insert a valuer to continue")
-
     if action == "starten":
         starten()
     if action == "beenden":
         beenden()
 
 if __name__ == "__main__":
-    main("starten")
+    main("beenden")
     # action=os.environ.get('ACTION')
     # if action == None or action == "":
     #     email_subject = "GFN-CLOCK-OUT ERROR ENTRY"
