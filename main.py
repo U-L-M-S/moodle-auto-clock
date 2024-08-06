@@ -69,6 +69,7 @@ def login()->None:
         print("No alert")
 
 def starten()->None:
+    #print(driver.page_source)
     try:    
         # **Separate finding and clicking actions**
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "flexRadioDefault2"))).click()
@@ -82,6 +83,7 @@ def starten()->None:
         driver.quit()
 
 def beenden():
+    #print(driver.page_source)
     #logout via PHP
     driver.get('https://lernplattform.gfn.de/?stoppen=1')
     driver.quit()
