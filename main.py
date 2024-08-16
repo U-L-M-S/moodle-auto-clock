@@ -69,18 +69,8 @@ def login()->None:
         print("No alert")
 
 def starten()->None:
-    #print(driver.page_source)
-    try:    
-        # **Separate finding and clicking actions**
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "flexRadioDefault2"))).click()
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input.btn.btn-primary[type='submit'][value='Starten']"))).click()
-    except Exception as e:
-        print(e)
-        email_subject = "GFN-CLOCK-OUT ERROR starten not found"
-        email_body = f"Error on main.py LINE:72. \n 'flexRadioDefault2' radio OR 'Starten' button not found.\nException: {e}"
-        mail(email_subject, email_body)
-    finally:
-        driver.quit()
+    driver.get('https://lernplattform.gfn.de/?starten=1')
+    driver.quit()
 
 def beenden():
     #print(driver.page_source)
