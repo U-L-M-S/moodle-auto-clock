@@ -1,5 +1,8 @@
 # moodle-auto-clock
 
+![grafik](https://github.com/user-attachments/assets/a2af6530-5418-4863-87ea-fcad394e5b1f)
+
+
 It's a simple script that clocks the user in/out of the Moodle platform. Using Web Scraping. Moodle doesn't provide an API.
 
 ## What am I going to learn in this README ?
