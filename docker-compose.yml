@@ -1,4 +1,3 @@
-version: "2.0"
 name: moodle-auto-clock_container
 services:
   moodle-auto-clock_image:
