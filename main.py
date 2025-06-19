@@ -8,6 +8,7 @@ import smtplib
 import json
 import os
 
+
 # Configure Chrome options for headless mode
 chrome_options = Options()
 chrome_options.add_argument("--headless")
