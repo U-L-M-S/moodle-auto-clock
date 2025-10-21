@@ -4,4 +4,4 @@ services:
     build: .  # Build the image from the current directory (./)
     image: moodle-auto-clock_image:latest
     volumes:
-      - ./credentials.json:/app/credentials.json:ro  # Mount credentials with read-only access
+      - ./credentials.local.json:/app/credentials.json:ro  # Mount credentials with read-only access
