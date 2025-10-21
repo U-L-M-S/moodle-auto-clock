@@ -138,4 +138,3 @@ if __name__ == "__main__":
         mail(email_subject, email_body)
     else:
         main(action)
-
