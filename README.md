@@ -19,8 +19,8 @@ ___
 
 ## Server
 
-### Windows: 
-[Docker install guide](https://docs.docker.com/desktop/install/windows-install/) 
+### Windows:
+[Docker install guide](https://docs.docker.com/desktop/install/windows-install/)
 
 ### Linux:
 First let's install Docker and configure it.
@@ -56,7 +56,7 @@ docker compose build
 In this way a docker image will be created with the name *moodle-auto-clock_image*.
 
 #### SSH
-you can simple run 
+you can simple run
 ```sh
 ssh user@server "docker run --rm -e ACTION=starten moodle-auto-clock_image"
 ```
@@ -77,7 +77,7 @@ Then select the **action** *run ssh command*, input your informations (hostname,
 
 ##### Installation
 
-There are many apps available. 
+There are many apps available.
 Example apps:
 - Tasker [Google Play](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm&hl=de&gl=US)
 - MacroDroid [Google Play](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid&hl=en&gl=US)

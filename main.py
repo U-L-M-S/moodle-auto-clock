@@ -62,7 +62,7 @@ def login():
 
 def starten(session):
     """Send the start request"""
-    payload = {'homeo': '2'}  
+    payload = {'homeo': '2'}
     resp = session.post(START_URL, data=payload)
     print(f"Starten → {resp.status_code}")
     if resp.status_code == 200:
