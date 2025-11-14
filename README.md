@@ -1,5 +1,8 @@
 # moodle-auto-clock
 
+<img width="1196" height="672" alt="grafik" src="https://github.com/user-attachments/assets/a50fa16a-04bb-471f-ba4e-0b67a496eb37" />
+
+
 A simple attendance tracking automation script for Moodle platforms. This tool automatically clocks users in/out using web scraping, as Moodle doesn't provide a standardized API for attendance tracking.
 
 ## What am I going to learn in this README ?
