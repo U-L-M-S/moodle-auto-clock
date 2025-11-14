@@ -4,9 +4,27 @@ import json
 import os
 from bs4 import BeautifulSoup
 
-LOGIN_URL = "https://lernplattform.gfn.de/login/index.php"
-START_URL = "https://lernplattform.gfn.de/?starten=1"
-STOP_URL = "https://lernplattform.gfn.de/?stoppen=1"
+# URLs will be constructed from credentials.json
+LOGIN_URL = None
+START_URL = None
+STOP_URL = None
+
+def load_urls():
+    """Load and construct URLs from credentials"""
+    global LOGIN_URL, START_URL, STOP_URL
+    with open('credentials.local.json') as f:
+        creds = json.load(f)
+
+    subdomain = creds.get('subdomain', '')
+    domain = creds.get('domain', '')
+
+    if not subdomain or not domain:
+        raise Exception("Please configure 'subdomain' and 'domain' in credentials.local.json")
+
+    base_url = f"https://{subdomain}.{domain}"
+    LOGIN_URL = f"{base_url}/login/index.php"
+    START_URL = f"{base_url}/?starten=1"
+    STOP_URL = f"{base_url}/?stoppen=1"
 
 def mail(subject, body):
     """Send error/success emails"""
@@ -53,7 +71,7 @@ def login():
     resp = s.post(LOGIN_URL, data=payload)
 
     if resp.status_code != 200 or "login" in resp.url:
-        mail("GFN-CLOCK LOGIN FAILED", "Login to Moodle failed — check credentials.")
+        mail("MOODLE-CLOCK LOGIN FAILED", "Login to Moodle failed — check credentials.")
         raise Exception("Login failed")
 
     print("Logged in successfully.")
@@ -66,9 +84,9 @@ def starten(session):
     resp = session.post(START_URL, data=payload)
     print(f"Starten → {resp.status_code}")
     if resp.status_code == 200:
-        mail("GFN-CLOCK STARTED", "Successfully clocked IN on Moodle.")
+        mail("MOODLE-CLOCK STARTED", "Successfully clocked IN on Moodle.")
     else:
-        mail("GFN-CLOCK START ERROR", f"Response: {resp.status_code}")
+        mail("MOODLE-CLOCK START ERROR", f"Response: {resp.status_code}")
 
 
 def beenden(session):
@@ -76,28 +94,29 @@ def beenden(session):
     resp = session.post(STOP_URL)
     print(f"Beenden → {resp.status_code}")
     if resp.status_code == 200:
-        mail("GFN-CLOCK STOPPED", "Successfully clocked OUT on Moodle.")
+        mail("MOODLE-CLOCK STOPPED", "Successfully clocked OUT on Moodle.")
     else:
-        mail("GFN-CLOCK STOP ERROR", f"Response: {resp.status_code}")
+        mail("MOODLE-CLOCK STOP ERROR", f"Response: {resp.status_code}")
 
 
 def main(action):
     try:
+        load_urls()
         session = login()
         if action == "starten":
             starten(session)
         elif action == "beenden":
             beenden(session)
         else:
-            mail("GFN-CLOCK UNKNOWN ACTION", f"Unknown ACTION: {action}")
+            mail("MOODLE-CLOCK UNKNOWN ACTION", f"Unknown ACTION: {action}")
     except Exception as e:
-        mail("GFN-CLOCK ERROR", str(e))
+        mail("MOODLE-CLOCK ERROR", str(e))
 
 
 if __name__ == "__main__":
     action = os.environ.get("ACTION")
     if not action:
-        mail("GFN-CLOCK MISSING ACTION",
+        mail("MOODLE-CLOCK MISSING ACTION",
              "Please pass ACTION=starten or ACTION=beenden.")
     else:
         main(action)

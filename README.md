@@ -1,9 +1,6 @@
 # moodle-auto-clock
 
-![grafik](https://github.com/user-attachments/assets/a2af6530-5418-4863-87ea-fcad394e5b1f)
-
-
-It's a simple script that clocks the user in/out of the Moodle platform. Using Web Scraping. Moodle doesn't provide an API.
+A simple attendance tracking automation script for Moodle platforms. This tool automatically clocks users in/out using web scraping, as Moodle doesn't provide a standardized API for attendance tracking.
 
 ## What am I going to learn in this README ?
 > **You are NOT going to learn how to setup or create your our server.**
@@ -35,18 +32,29 @@ Once you are done just clone this repository.
 ```sh
 git clone https://github.com/U-L-M-S/moodle-auto-clock.git
 ```
-Next change the credentials.json wiht your credentials
+Next, copy `credentials.json` to `credentials.local.json` and configure it with your Moodle instance and credentials:
 
 ```json
 {
-    "username": "moodle_mail_for_login@mail.de",
-    "password": "moodle_pswd_for_login",
-    "bot_mail": "bot_gmail_to_send_email@gmail.de",
-    "bot_pswd": "bot_gmail_pswd_to_send_email",
-    "user_mail": "your_gmail_to_receive_email@gmail.de"
+    "subdomain": "your-subdomain",
+    "domain": "example.com",
+    "username": "your_moodle_username",
+    "password": "your_moodle_password",
+    "bot_mail": "bot_gmail@gmail.com",
+    "bot_pswd": "your_gmail_app_password",
+    "user_mail": "your_email@gmail.com"
 }
 ```
-You can use your credentials of your own email and send the email (in case of errors) to youself or create a bot and send the errors via the bot to your email. In each case you will need a [gmail app password.](https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmyaccount.google.com%2Fapppasswords&followup=https%3A%2F%2Fmyaccount.google.com%2Fapppasswords&ifkv=ARZ0qKLgAZL4X5K5J9YlzJWF1WX5iBQSiR26PGBK__-qiL8W4wBWXeIzu8M7OBXkSaZFJ4A0x7--IQ&osid=1&passive=1209600&rart=ANgoxccWtu49xcTR9O_jbYe2oE81ij-AfRR1Hgdf9nc8NKT8VoCeQBNklnQHOdngZJzYwNIIdpX0X3X4DBljU0epmrun6EeSL3zy0NL_HTlmR0BYALO9_Yg&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S1828806382%3A1710924453785456&theme=glif&ddm=0)
+
+**Configuration fields:**
+- `subdomain`: The subdomain of your Moodle instance (e.g., "lernplattform")
+- `domain`: The domain of your Moodle instance (e.g., "example.com")
+  - Together these build the URL: `https://subdomain.domain`
+- `username`: Your Moodle login username
+- `password`: Your Moodle login password
+- `bot_mail`: Gmail address to send notification emails from
+- `bot_pswd`: Gmail [App Password](https://myaccount.google.com/apppasswords) (not regular password)
+- `user_mail`: Email address to receive notifications
 
 Now you need to configure the docker compose.
 just go to the project folder `cd moodle-auto-clock` and run this command:
@@ -109,12 +117,11 @@ To view all your saved macros, navigate to the "Macros" tab at the bottom of the
 ## Usage Notice
 
 This tool was developed solely for educational purposes as part of my vocational
-training as an Application Development IT Specialist. It is a private project and
-is not affiliated with GFN, any instructors, or any other involved institutions.
+training as an Application Development IT Specialist. It is a private project.
 
 Use of this tool is at your own risk. I assume no liability for any consequences
 that may arise from using this tool, such as technical issues, violations of
-institutional guidelines, or conflicts with training organizations.
+institutional guidelines, or conflicts with organizations.
 
 Please ensure that the use of this tool complies with the rules and policies of
 your school, organization, or learning platform.
@@ -123,13 +130,12 @@ your school, organization, or learning platform.
 
 Dieses Tool wurde ausschließlich zu Bildungszwecken im Rahmen meiner Weiterbildung
 als Fachinformatiker Anwendungsentwicklung entwickelt. Es handelt sich um ein
-privates Projekt ohne Verbindung zu GFN, den Dozenten oder anderen beteiligten
-Institutionen.
+privates Projekt.
 
 Die Nutzung erfolgt auf eigene Verantwortung. Ich übernehme keinerlei Haftung
 für Konsequenzen, die durch den Einsatz dieses Tools entstehen können, wie
 beispielsweise technische Probleme, Richtlinienverstöße oder Konflikte mit
-Bildungseinrichtungen.
+Organisationen.
 
 Bitte stelle sicher, dass der Einsatz dieses Tools mit den geltenden Regeln
 deiner Schule, Organisation oder Lernplattform vereinbar ist.
