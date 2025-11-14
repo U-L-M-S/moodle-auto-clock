@@ -103,3 +103,33 @@ But for these instructions, we will use the free app "MacroDroid"
 11. Press the "Back" arrow in the top-left corner, then click "Save" in the pop-up message. You're done!
 
 To view all your saved macros, navigate to the "Macros" tab at the bottom of the Main Menu.
+
+---
+
+## Usage Notice
+
+This tool was developed solely for educational purposes as part of my vocational
+training as an Application Development IT Specialist. It is a private project and
+is not affiliated with GFN, any instructors, or any other involved institutions.
+
+Use of this tool is at your own risk. I assume no liability for any consequences
+that may arise from using this tool, such as technical issues, violations of
+institutional guidelines, or conflicts with training organizations.
+
+Please ensure that the use of this tool complies with the rules and policies of
+your school, organization, or learning platform.
+
+## Hinweis zur Nutzung
+
+Dieses Tool wurde ausschließlich zu Bildungszwecken im Rahmen meiner Weiterbildung
+als Fachinformatiker Anwendungsentwicklung entwickelt. Es handelt sich um ein
+privates Projekt ohne Verbindung zu GFN, den Dozenten oder anderen beteiligten
+Institutionen.
+
+Die Nutzung erfolgt auf eigene Verantwortung. Ich übernehme keinerlei Haftung
+für Konsequenzen, die durch den Einsatz dieses Tools entstehen können, wie
+beispielsweise technische Probleme, Richtlinienverstöße oder Konflikte mit
+Bildungseinrichtungen.
+
+Bitte stelle sicher, dass der Einsatz dieses Tools mit den geltenden Regeln
+deiner Schule, Organisation oder Lernplattform vereinbar ist.
